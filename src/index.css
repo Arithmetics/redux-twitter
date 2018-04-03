@@ -2,4 +2,44 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-line {
+  width: 500px;
+
+}
+
+.tweet-box {
+  width: 400px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  width: 100%;
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+}
+
+.avatar-box {
+  width: 10%;
+  float: left;
+  display: inline-block;
+}
+
+.tweet-content {
+  width: 90%;
+  margin-left: 10px;
+}
+
+.avatar {
+  width: 50px;
+  border-radius: 50px;
+}
+
+.tweet-name {
+  font-weight: bold;
+  font-size: 18px;
 }
