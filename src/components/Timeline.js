@@ -1,8 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { formatTweet, formatDate } from '../utils/helpers'
+import { handleLikeTweet } from '../actions/tweets'
 
 class Timeline extends React.Component {
+
+  handleLike = (tweetId, liked) => {
+    const { authedUser } = this.props
+    this.props.dispatch(handleLikeTweet({ authedUser, id: tweetId, hasLiked: liked }))
+  }
+
   render(){
     const tweets = this.props.tweets
     console.log(tweets);
@@ -19,8 +26,17 @@ class Timeline extends React.Component {
                 <p className='tweet-name'>{tweet.name}</p>
                 <p>{formatDate(tweet.timestamp)}</p>
                 <p>{tweet.text}</p>
-                <p>{tweet.parent ? 'replying to @' + tweet.parent.author : null}</p>
-                <p>Liked?{tweet.hasLiked ? " yes" : " no"}</p>
+                <div className='button-area'>
+                  <button
+                    className='reply-button'>
+                  </button>
+                  <button
+                    className={tweet.hasLiked ? 'unlike-button' : 'like-button'}
+                    onClick={()=>{this.handleLike(tweet.id, tweet.hasLiked)}}
+                    >
+                  </button>
+                  <p className="likes">{tweet.likes}</p>
+                </div>
               </div>
             </div>
           ))}

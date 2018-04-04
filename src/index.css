@@ -7,6 +7,10 @@ body {
   align-items: center;
 }
 
+p {
+  margin: 5px;
+}
+
 .time-line {
   width: 500px;
 
@@ -42,4 +46,63 @@ body {
 .tweet-name {
   font-weight: bold;
   font-size: 18px;
+}
+
+.reply-button {
+  width: 30px;
+  height: 30px;
+  background: url("assets/reply.svg") no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  border: none;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.reply-button:hover {
+  width: 30px;
+  height: 30px;
+  background: url("assets/hover-reply.svg") no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  border: none;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.like-button {
+  width: 30px;
+  height: 30px;
+  background: url("assets/unliked.svg") no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  border: none;
+  display: inline-block;
+}
+
+.like-button:hover {
+  width: 30px;
+  height: 30px;
+  background: url("assets/hoverlike.svg") no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  border: none;
+}
+
+.unlike-button {
+  width: 30px;
+  height: 30px;
+  background: url("assets/liked.svg") no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  border: none;
+  display: inline-block;
+}
+
+
+
+.likes {
+  display: inline-block;
+  position: relative;
+  top: -8px;
 }
