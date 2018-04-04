@@ -1,5 +1,6 @@
 import { RECEIVE_TWEETS } from '../actions/tweets'
 import { LIKE_TWEET } from '../actions/tweets'
+import { NEW_TWEET } from '../actions/tweets'
 
 
 export default function tweets(state = {}, action) {
@@ -29,6 +30,11 @@ export default function tweets(state = {}, action) {
             ["likes"]: tweet["likes"].filter((uid) => uid !== authedUser)
           }
         }
+      }
+    case NEW_TWEET:
+      return {
+        ...state,
+        [action.tweet.id]: action.tweet
       }
 
   default:

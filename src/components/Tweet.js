@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { formatTweet, formatDate } from '../utils/helpers'
 import { handleLikeTweet } from '../actions/tweets'
-import { Link } from 'react-router-dom'
+import Compose from './Compose'
 
-class Timeline extends React.Component {
+class Tweet extends React.Component {
 
   handleLike = (tweetId, liked) => {
     const { authedUser } = this.props
@@ -12,13 +12,48 @@ class Timeline extends React.Component {
   }
 
   render(){
-    const tweets = this.props.tweets
-    console.log(tweets);
+    const id = this.props.match.params.id
+    const currentTweet = this.props.tweets.find(function(tweet){
+      return tweet.id === id
+    })
+    const replyTweets = this.props.tweets.filter(function(tweet){
+      return tweet.parent && tweet.parent.id === id
+    })
+
+
     return (
       <div>
         <div className="time-line">
-          <h1>Your Timeline</h1>
-          {tweets.map((tweet) => (
+        <div className='tweet-box' key={currentTweet.id}>
+          <div className='avatar-box'>
+            <img className="avatar" src={currentTweet.avatar} alt={`Avatar for ${currentTweet.name}`} />
+          </div>
+          <div className='tweet-content'>
+            <p className='tweet-name'>{currentTweet.name}</p>
+            <p>{currentTweet.parent ? "replying to @" + currentTweet.parent.author : ""}</p>
+            <p>{formatDate(currentTweet.timestamp)}</p>
+            <p>{currentTweet.text}</p>
+            <div className='button-area'>
+              <button
+                className='reply-button'>
+              </button>
+              <button
+                className={currentTweet.hasLiked ? 'unlike-button' : 'like-button'}
+                onClick={()=>{this.handleLike(currentTweet.id, currentTweet.hasLiked)}}
+                >
+              </button>
+              <p className="likes">{currentTweet.likes}</p>
+            </div>
+          </div>
+        </div>
+
+        <Compose
+          title={"Reply to Tweet"}
+          parentId={id}
+          noRedirect={true}
+          />
+
+          {replyTweets.map((tweet) => (
             <div className='tweet-box' key={tweet.id}>
               <div className='avatar-box'>
                 <img className="avatar" src={tweet.avatar} alt={`Avatar for ${tweet.name}`} />
@@ -29,11 +64,9 @@ class Timeline extends React.Component {
                 <p>{formatDate(tweet.timestamp)}</p>
                 <p>{tweet.text}</p>
                 <div className='button-area'>
-                  <Link to={`tweets/${tweet.id}`}>
-                    <button
-                      className='reply-button'>
-                    </button>
-                  </Link>
+                  <button
+                    className='reply-button'>
+                  </button>
                   <button
                     className={tweet.hasLiked ? 'unlike-button' : 'like-button'}
                     onClick={()=>{this.handleLike(tweet.id, tweet.hasLiked)}}
@@ -49,7 +82,6 @@ class Timeline extends React.Component {
     )
   }
 }
-
 
 function mapStateToProps({ authedUser, tweets, users} ){
 
@@ -69,4 +101,4 @@ function mapStateToProps({ authedUser, tweets, users} ){
  }
 }
 
-export default connect(mapStateToProps)(Timeline)
+export default connect(mapStateToProps)(Tweet)
