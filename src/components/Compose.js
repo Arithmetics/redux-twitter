@@ -31,7 +31,7 @@ class Compose extends React.Component {
     this.setState(() => ({
       text: ''
     }))
-    
+
     if(this.props.noRedirect){
 
     } else {
@@ -44,15 +44,18 @@ class Compose extends React.Component {
     const { text } = this.state
 
     return (
-      <div>
-        <h1>Compose {this.props.title || "New Tweet"}</h1>
+      <div className="reply-box">
+        <h3>Compose {this.props.title || "New Tweet"}</h3>
         <form className='compose-form' onSubmit={this.handleSubmit}>
-          <input
+          <textarea
+            rows="5"
+            cols="55"
             value={text}
             onChange={this.handleInputChange}
             name='text'
             className='tweet-input'
             type='text' />
+          <br />
           <button
             className='submit-button'
             type='submit'

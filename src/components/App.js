@@ -17,8 +17,6 @@ class App extends Component {
 
   render() {
     return (
-
-
       <Router>
         <Fragment>
           <LoadingBar />
@@ -34,7 +32,6 @@ class App extends Component {
           </div>
         </Fragment>
       </Router>
-
     )
   }
 }

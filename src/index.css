@@ -7,14 +7,35 @@ body {
   align-items: center;
 }
 
+nav ul {
+  list-style-type: none;
+}
+nav ul li {
+  display: inline-block;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  margin: 10px;
+  padding: 5px;
+  text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
 p {
   margin: 5px;
 }
 
 .time-line {
   width: 500px;
-
 }
+
+.time-line h1{
+  text-align: center;
+}
+
 
 .tweet-box {
   width: 400px;
@@ -25,6 +46,33 @@ p {
   margin: 20px;
   padding: 10px;
   display: flex;
+}
+
+.reply-box {
+  width: 400px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  width: 100%;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.submit-button {
+  width: 50px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  width: 100px;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+}
+
+.compose-form {
+  display: block;
 }
 
 .avatar-box {
